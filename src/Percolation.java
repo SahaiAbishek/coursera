@@ -2,28 +2,28 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
 
-	private WeightedQuickUnionUF weightedQuickUnionUF;
+	private final WeightedQuickUnionUF weightedQuickUnionUF;
 	private boolean[] arr;
 	private int numberofOpensites;
-	private int top = 0;
-	private int bottom;
-	private int length;
+	private final int top = 0;
+	private final int bottom;
+	private final int length;
 
 	// create n-by-n grid, with all sites blocked
 	public Percolation(int n) {
 		if (n < 0) {
 			throw new IllegalArgumentException("Size can't be smaller than 0");
 		}
-		
+
 		length = n;
-		int size = n * n;
+		int size = (n * n) + 1;
 		bottom = size + 1;
 		weightedQuickUnionUF = new WeightedQuickUnionUF(size + 2);
 		arr = new boolean[size];
 	}
-	
-	private void checkRange(int row, int col){
-		if(row < 1 || col > length){
+
+	private void checkRange(int row, int col) {
+		if (row < 1 || row > length || col < 1 || col > length) {
 			throw new IllegalArgumentException("Row or column is outside the range");
 		}
 	}
@@ -32,13 +32,13 @@ public class Percolation {
 		checkRange(row, col);
 		row = row - 1;
 		col = col - 1;
-		return ((length * row) + col + 1);
+		return ((length * row) + col);
 	}
 
 	// open site (row, col) if it is not open already
 	public void open(int row, int col) {
 		checkRange(row, col);
-		
+
 		int index = getIndex(row, col);
 		if (!arr[index]) {
 			arr[index] = true;
@@ -74,7 +74,7 @@ public class Percolation {
 	// is site (row, col) open?
 	public boolean isOpen(int row, int col) {
 		checkRange(row, col);
-		
+
 		int index = getIndex(row, col);
 		return arr[index];
 	}
@@ -82,7 +82,12 @@ public class Percolation {
 	// is site (row, col) full?
 	public boolean isFull(int row, int col) {
 		checkRange(row, col);
-		return weightedQuickUnionUF.connected(getIndex(row, col), top);
+		if (isOpen(row, col))
+			return weightedQuickUnionUF.connected(getIndex(row, col), top);
+		else
+			return false;
+		// return isOpen(row, col) ?
+		// weightedQuickUnionUF.connected(getIndex(row, col), top) : false;
 	}
 
 	// number of open sites
@@ -102,7 +107,7 @@ public class Percolation {
 		percolation.open(2, 1);
 		percolation.open(3, 1);
 		percolation.open(4, 1);
-		System.out.println("Number of open sites = "+percolation.numberOfOpenSites());
+		System.out.println("Number of open sites = " + percolation.numberOfOpenSites());
 		System.out.println(percolation.percolates());
 	}
 }
