@@ -73,6 +73,10 @@ public class Deque<Item> implements Iterable<Item> {
 		}
 		Item item = first.item;
 		first = first.next;
+		if (null != first) {
+			first.prev = null;
+		}
+		size--;
 		if (isEmpty()) {
 			last = first;
 		}
@@ -85,13 +89,44 @@ public class Deque<Item> implements Iterable<Item> {
 			throw new NoSuchElementException("Deque is empty");
 		}
 		Item item = last.item;
-		last = last.next;
+		last = last.prev;
+		if (null != last) {
+			last.next = null;
+		}
+		size--;
+		if (isEmpty()) {
+			first = last;
+		}
 		return item;
+	}
+
+	private class ListIterator implements Iterator<Item> {
+
+		private Node current = first;
+
+		@Override
+		public boolean hasNext() {
+			return current != null;
+		}
+
+		@Override
+		public Item next() {
+			Item item = current.item;
+			current = current.next;
+			// current.prev = null;
+			return item;
+		}
+
+		@Override
+		public void remove() {
+			throw new UnsupportedOperationException("Remove not supported");
+		}
+
 	}
 
 	// return an iterator over items in order from front to end
 	public Iterator<Item> iterator() {
-		return null;
+		return new ListIterator();
 	}
 
 	// unit testing (optional)
@@ -102,7 +137,20 @@ public class Deque<Item> implements Iterable<Item> {
 		deque.addLast(3);
 		deque.addLast(4);
 
-		System.out.println(deque.removeLast());
-		System.out.println(deque.removeFirst());
+		for (int itm : deque) {
+			System.out.print(itm + " : ");
+		}
+		System.out.println();
+		System.out.println("Before delete : " + deque.size() + " items");
+
+		System.out.println("delete : " + deque.removeLast());
+		System.out.println("delete : " + deque.removeFirst());
+		System.out.println("delete : " + deque.removeFirst());
+		System.out.println("delete : " + deque.removeLast());
+
+		System.out.println("after delete(s) : " + deque.size() + " items");
+		for (int itm : deque) {
+			System.out.print(itm + " : ");
+		}
 	}
 }
