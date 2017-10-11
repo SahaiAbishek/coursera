@@ -7,7 +7,15 @@ public class BruteCollinearPoints {
 		if (points == null) {
 			throw new IllegalArgumentException();
 		}
-		
+
+		for (int i = 0; i < points.length - 1; i++) {
+			for (int j = i + 1; j < points.length; j++) {
+				if (points[i].compareTo(points[j]) == 0) {
+					throw new IllegalArgumentException("Duplicated entries in given points.");
+				}
+			}
+		}
+
 		lineSegments = new LineSegment[points.length];
 		numberOfSegments = 0;
 		for (int i = 0; i < points.length; i++) {
