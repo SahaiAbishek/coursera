@@ -65,25 +65,15 @@ public class Point implements Comparable<Point> {
 	 */
 	public double slopeTo(Point that) {
 		/* YOUR CODE HERE */
-		double slope = 0.0;
-		if ((that.y - this.y) == 0) {
-			slope = 0.0;
-			return slope;
+		if (this.x == that.x && this.y != that.y) {
+			return Double.POSITIVE_INFINITY;
+		} else if (this.x == that.x && this.y == that.y) {
+			return Double.NEGATIVE_INFINITY;
+		} else if (that.y - this.y == 0) {
+			return 0.0;
 		}
 
-		if ((that.x - this.x) == 0) {
-			slope = Double.POSITIVE_INFINITY;
-			return slope;
-		}
-
-		if ((that.x == this.x) && (that.y == this.y)) {
-			slope = Double.NEGATIVE_INFINITY;
-			return slope;
-		}
-
-		slope = (that.y - this.y) / (that.x - this.x);
-
-		return slope;
+		return ((double) (that.y - this.y) / (double) (that.x - this.x));
 	}
 
 	/**
@@ -102,22 +92,17 @@ public class Point implements Comparable<Point> {
 		/* YOUR CODE HERE */
 		if (this.y < that.y) {
 			return -1;
-		}
-		if (this.y > that.y) {
+		} else if (this.y > that.y) {
 			return 1;
-		}
-		if (this.y == that.y) {
+		} else {
 			if (this.x < that.x) {
 				return -1;
-			}
-			if (this.x > that.x) {
+			} else if (this.x > that.x) {
 				return 1;
-			}
-			if (this.x == that.x) {
+			} else {
 				return 0;
 			}
 		}
-		return 0;
 	}
 
 	/**
@@ -132,15 +117,14 @@ public class Point implements Comparable<Point> {
 
 			@Override
 			public int compare(Point p1, Point p2) {
-				// TODO Auto-generated method stub
-				double val = slopeTo(p1) - slopeTo(p2);
-				if (val > 0) {
-					return 1;
-				} else if (val < 0) {
+				double slope1 = Point.this.slopeTo(p1);
+				double slope2 = Point.this.slopeTo(p2);
+
+				if (slope1 < slope2)
 					return -1;
-				} else {
-					return 0;
-				}
+				if (slope2 < slope1)
+					return 1;
+				return 0;
 			}
 		};
 	}
