@@ -19,18 +19,20 @@ public class FastCollinearPoints {
 			}
 		}
 
+		Point[] aux  = Arrays.copyOf(points, points.length);
 		for (int i = 0; i < points.length-1; i++) {
-			Point p = points[i];
+			Point p = aux[i];
 			if (null == p) {
 				throw new IllegalArgumentException();
 			}
+			Arrays.sort(points);
 			Arrays.sort(points,i+1,points.length, p.slopeOrder());
 
 			// calculate slope with next point
 			int consecutivecount = 1;
-			int j=0;
-			double currentSlope = p.slopeTo(points[j + 1]);
-			for (j = 2; j < points.length; j++) {
+			int j=i;
+			double currentSlope = p.slopeTo(points[j]);
+			for (j = j+1; j < points.length; j++) {
 				double nextSlope = p.slopeTo(points[j]);
 				if (currentSlope == nextSlope) {
 					consecutivecount++;
