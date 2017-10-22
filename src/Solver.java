@@ -1,6 +1,6 @@
-import java.nio.channels.UnresolvedAddressException;
 import java.util.Comparator;
 
+import coursera.Stack;
 import edu.princeton.cs.algs4.MinPQ;
 
 public class Solver {
@@ -64,14 +64,31 @@ public class Solver {
 	}
 
 	public int moves() {
+		int moves = 0;
 		if (!isSolvable()) {
 			return -1;
 		}
-		return 0;
+		Node current = finalNode;
+		while (current.prev != null) {
+			moves++;
+			current = current.prev;
+
+		}
+		return moves;
 	}
 
 	public Iterable<Board> solution() {
-		return null;
+		if (isSolvable()) {
+			Node current = finalNode;
+			Stack<Board> stk = new Stack<>();
+			while (current.prev != null) {
+				stk.push(current.board);
+				current = current.prev;
+			}
+			return stk;
+		} else {
+			return null;
+		}
 	}
 
 	public static void main(String[] args) {
