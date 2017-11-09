@@ -1,4 +1,4 @@
-package general.ds;
+package coursera;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,11 +92,11 @@ public class MyTree {
 	// }
 
 	public int floor(int num) {
-		Node x =  floor(node, num);
-		if( x == null){
+		Node x = floor(node, num);
+		if (x == null) {
 			return 0;
 		}
-		
+
 		return x.value;
 	}
 
@@ -105,16 +105,21 @@ public class MyTree {
 			return null;
 		}
 
-		Node tmp = node;
-		if (num < tmp.value) {
-			tmp = floor(node.left, num);
-		} else if (num > tmp.value) {
-			tmp = floor(node.right, num);
-		} else{
-			return tmp;
+		if (num == node.value) {
+			return node;
 		}
 
-		return tmp;
+		if (num < node.value) {
+			return floor(node.left, num);
+		}
+
+		Node tmp = floor(node.right, num);
+		if (tmp != null) {
+			return tmp;
+		} else {
+			return node;
+		}
+
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -132,7 +137,7 @@ public class MyTree {
 		System.out.println("Size : " + tree.size());
 		System.out.println("Depth : " + tree.maxDepth());
 		System.out.println("Min : " + tree.min());
-		System.out.println("Floor  : " + tree.floor(35));
+		System.out.println("Floor  : " + tree.floor(65));
 	}
 
 }
