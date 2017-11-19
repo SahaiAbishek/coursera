@@ -3,10 +3,14 @@ package hkr;
 import java.util.NoSuchElementException;
 
 public class MinHeap {
-
-	double arr[] = new double[10];
+	
+	double arr[] = null;
 	int size = 0;
 
+	public MinHeap(int n) {
+		arr = new double[n];
+	}
+	
 	public void insert(int num) {
 		size++;
 		arr[size] = num;
@@ -92,7 +96,7 @@ public class MinHeap {
 	}
 
 	public static void main(String[] args) {
-		MinHeap minHeap = new MinHeap();
+		MinHeap minHeap = new MinHeap(6);
 		minHeap.insert(12);
 		minHeap.insert(4);
 		minHeap.insert(5);

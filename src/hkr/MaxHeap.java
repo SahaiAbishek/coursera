@@ -2,8 +2,12 @@ package hkr;
 
 public class MaxHeap {
 
-	double arr[] = new double[10];
+	double arr[] = null;
 	int size = 0;
+
+	public MaxHeap(int n) {
+		arr = new double[n];
+	}
 
 	public void insert(int num) {
 		size++;
@@ -16,10 +20,10 @@ public class MaxHeap {
 		arr[1] = arr[size];
 		size--;
 		sink(1);
-		arr[size+1] = 0;
+		arr[size + 1] = 0;
 		return min;
 	}
-	
+
 	public double peek() {
 		return arr[1];
 	}
@@ -67,7 +71,7 @@ public class MaxHeap {
 	}
 
 	public static void main(String[] args) {
-		MaxHeap minHeap = new MaxHeap();
+		MaxHeap minHeap = new MaxHeap(6);
 		minHeap.insert(12);
 		minHeap.insert(4);
 		minHeap.insert(5);
@@ -76,6 +80,6 @@ public class MaxHeap {
 		minHeap.insert(7);
 		System.out.println(minHeap + " size " + minHeap.size);
 		minHeap.delete();
-		System.out.println("\n"+minHeap + " size " + minHeap.size);
+		System.out.println("\n" + minHeap + " size " + minHeap.size);
 	}
 }
