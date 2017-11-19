@@ -1,6 +1,6 @@
 package hkr;
 
-public class MaxHealp {
+public class MaxHeap {
 
 	double arr[] = new double[10];
 	int size = 0;
@@ -67,7 +67,7 @@ public class MaxHealp {
 	}
 
 	public static void main(String[] args) {
-		MaxHealp minHeap = new MaxHealp();
+		MaxHeap minHeap = new MaxHeap();
 		minHeap.insert(12);
 		minHeap.insert(4);
 		minHeap.insert(5);
