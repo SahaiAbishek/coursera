@@ -1,6 +1,4 @@
-package general.ds;
-
-import java.util.NoSuchElementException;
+package hkr;
 
 public class MaxHealp {
 
@@ -20,6 +18,14 @@ public class MaxHealp {
 		sink(1);
 		arr[size+1] = 0;
 		return min;
+	}
+	
+	public double peek() {
+		return arr[1];
+	}
+
+	public int size() {
+		return size;
 	}
 
 	private void sink(int index) {

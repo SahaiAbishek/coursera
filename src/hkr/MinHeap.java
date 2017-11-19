@@ -1,4 +1,4 @@
-package general.ds;
+package hkr;
 
 import java.util.NoSuchElementException;
 
@@ -11,7 +11,7 @@ public class MinHeap {
 		size++;
 		arr[size] = num;
 		swim(size);
-//		median();
+		// median();
 	}
 
 	public double delete() {
@@ -19,8 +19,16 @@ public class MinHeap {
 		arr[1] = arr[size];
 		size--;
 		sink(1);
-		arr[size+1] = 0;
+		arr[size + 1] = 0;
 		return min;
+	}
+
+	public double peek() {
+		return arr[1];
+	}
+
+	public int size() {
+		return size;
 	}
 
 	private void sink(int index) {
@@ -93,6 +101,6 @@ public class MinHeap {
 		minHeap.insert(7);
 		System.out.println(minHeap + " size " + minHeap.size);
 		minHeap.delete();
-		System.out.println("\n"+minHeap + " size " + minHeap.size);
+		System.out.println("\n" + minHeap + " size " + minHeap.size);
 	}
 }
