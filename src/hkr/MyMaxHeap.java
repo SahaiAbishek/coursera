@@ -1,11 +1,11 @@
 package hkr;
 
-public class MaxHeap {
+public class MyMaxHeap {
 
-	int arr[] = null;
-	int size = 0;
+	private int arr[] = null;
+	private int size = 0;
 
-	public MaxHeap(int n) {
+	public MyMaxHeap(int n) {
 		arr = new int[n];
 	}
 
@@ -71,15 +71,10 @@ public class MaxHeap {
 	}
 
 	public static void main(String[] args) {
-		MaxHeap minHeap = new MaxHeap(7);
-		minHeap.insert(12);
-		minHeap.insert(4);
+		MyMaxHeap minHeap = new MyMaxHeap(7);
 		minHeap.insert(5);
-		minHeap.insert(3);
-		minHeap.insert(8);
-		minHeap.insert(7);
-		System.out.println(minHeap + " size " + minHeap.size);
-		minHeap.delete();
+		minHeap.insert(4);
+		minHeap.insert(6);
 		System.out.println("\n" + minHeap + " size " + minHeap.size);
 	}
 }

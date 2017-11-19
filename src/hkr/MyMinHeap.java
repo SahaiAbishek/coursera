@@ -2,12 +2,12 @@ package hkr;
 
 import java.util.NoSuchElementException;
 
-public class MinHeap {
+public class MyMinHeap {
 	
-	int arr[] = null;
-	int size = 0;
+	private int arr[] = null;
+	private int size = 0;
 
-	public MinHeap(int n) {
+	public MyMinHeap(int n) {
 		arr = new int[n];
 	}
 	
@@ -18,8 +18,8 @@ public class MinHeap {
 		// median();
 	}
 
-	public double delete() {
-		double min = arr[1];
+	public int delete() {
+		int min = arr[1];
 		arr[1] = arr[size];
 		size--;
 		sink(1);
@@ -96,15 +96,15 @@ public class MinHeap {
 	}
 
 	public static void main(String[] args) {
-		MinHeap minHeap = new MinHeap(7);
-		minHeap.insert(12);
-		minHeap.insert(4);
+		MyMinHeap minHeap = new MyMinHeap(7);
 		minHeap.insert(5);
-		minHeap.insert(3);
-		minHeap.insert(8);
-		minHeap.insert(7);
+		minHeap.insert(4);
+		minHeap.insert(6);
+//		minHeap.insert(4);
+//		minHeap.insert(5);
+//		minHeap.insert(6);
 		System.out.println(minHeap + " size " + minHeap.size);
-		minHeap.delete();
-		System.out.println("\n" + minHeap + " size " + minHeap.size);
+//		minHeap.delete();
+//		System.out.println("\n" + minHeap + " size " + minHeap.size);
 	}
 }
