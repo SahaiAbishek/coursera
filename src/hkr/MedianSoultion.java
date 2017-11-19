@@ -2,12 +2,11 @@ package hkr;
 
 public class MedianSoultion {
 	
-	public void runningMedian() {
+	public static void runningMedian(double num) {
 		
 	}
 
 	public static void main(String[] args) {
-		
 
 	}
 

@@ -4,11 +4,11 @@ import java.util.NoSuchElementException;
 
 public class MinHeap {
 	
-	double arr[] = null;
+	int arr[] = null;
 	int size = 0;
 
 	public MinHeap(int n) {
-		arr = new double[n];
+		arr = new int[n];
 	}
 	
 	public void insert(int num) {
@@ -42,7 +42,7 @@ public class MinHeap {
 				j++;
 			}
 			if (arr[index] > arr[j]) {
-				double temp = arr[j];
+				int temp = arr[j];
 				arr[j] = arr[index];
 				arr[index] = temp;
 			} else {
@@ -55,7 +55,7 @@ public class MinHeap {
 	private void swim(int index) {
 		while (index > 1 && arr[index / 2] > arr[index]) {
 			// swap the numbers
-			double temp = arr[index];
+			int temp = arr[index];
 			arr[index] = arr[index / 2];
 			arr[index / 2] = temp;
 			index = index / 2;
@@ -96,7 +96,7 @@ public class MinHeap {
 	}
 
 	public static void main(String[] args) {
-		MinHeap minHeap = new MinHeap(6);
+		MinHeap minHeap = new MinHeap(7);
 		minHeap.insert(12);
 		minHeap.insert(4);
 		minHeap.insert(5);

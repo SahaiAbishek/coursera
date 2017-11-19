@@ -2,11 +2,11 @@ package hkr;
 
 public class MaxHeap {
 
-	double arr[] = null;
+	int arr[] = null;
 	int size = 0;
 
 	public MaxHeap(int n) {
-		arr = new double[n];
+		arr = new int[n];
 	}
 
 	public void insert(int num) {
@@ -15,8 +15,8 @@ public class MaxHeap {
 		swim(size);
 	}
 
-	public double delete() {
-		double min = arr[1];
+	public int delete() {
+		int min = arr[1];
 		arr[1] = arr[size];
 		size--;
 		sink(1);
@@ -39,7 +39,7 @@ public class MaxHeap {
 				j++;
 			}
 			if (arr[index] < arr[j]) {
-				double temp = arr[j];
+				int temp = arr[j];
 				arr[j] = arr[index];
 				arr[index] = temp;
 			} else {
@@ -52,7 +52,7 @@ public class MaxHeap {
 	private void swim(int index) {
 		while (index > 1 && arr[index / 2] < arr[index]) {
 			// swap the numbers
-			double temp = arr[index];
+			int temp = arr[index];
 			arr[index] = arr[index / 2];
 			arr[index / 2] = temp;
 			index = index / 2;
@@ -71,7 +71,7 @@ public class MaxHeap {
 	}
 
 	public static void main(String[] args) {
-		MaxHeap minHeap = new MaxHeap(6);
+		MaxHeap minHeap = new MaxHeap(7);
 		minHeap.insert(12);
 		minHeap.insert(4);
 		minHeap.insert(5);
