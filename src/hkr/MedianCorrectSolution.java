@@ -2,16 +2,24 @@ package hkr;
 
 import java.util.Scanner;
 
-public class Solution {
+public class MedianCorrectSolution {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
+//        Scanner in = new Scanner(System.in);
+        int n = 7;
         MinHeap maxHeap = new MinHeap(n);
 		MaxHeap minHeap = new MaxHeap(n);
-        int[] a = new int[n];
+        int[] a = {29689,
+        		61859,
+        		43888,
+        		90223,
+        		33129,
+        		51730,
+        		71991,
+        		61487
+        		};
         for(int a_i=0; a_i < n; a_i++){
-            a[a_i] = in.nextInt();
+//            a[a_i] = in.nextInt();
             int num = a[a_i];
             if (minHeap.size() == 0) {
 				minHeap.insert(num);
@@ -32,38 +40,48 @@ public class Solution {
 			if (minHeap.size() == maxHeap.size()) {
 				if (num < minHeap.peek()) {
 					minHeap.insert(num);
-					double median = minHeap.peek();
-					System.out.println(String.format("%.1f", median));
+					if(minHeap.size() > maxHeap.size()) {
+						double median = minHeap.peek();
+						System.out.println(String.format("%.1f", median));
+					}else {
+						double median = maxHeap.peek();
+						System.out.println(String.format("%.1f", median));
+					}
 					continue;
-				} else {
+				}else {
 					maxHeap.insert(num);
-					double median = maxHeap.peek();
-					System.out.println(String.format("%.1f", median));
+					if(minHeap.size() > maxHeap.size()) {
+						double median = minHeap.peek();
+						System.out.println(String.format("%.1f", median));
+					}else {
+						double median = maxHeap.peek();
+						System.out.println(String.format("%.1f", median));
+					}
 					continue;
 				}
 			} else if (minHeap.size() < maxHeap.size()) {
-				if(num < minHeap.peek()) {
-					minHeap.insert(num);
-					double median = (minHeap.peek() + maxHeap.peek()) / 2;
-					System.out.println(String.format("%.1f", median));
-				}else {
+				if(num > maxHeap.peek()) {
 					minHeap.insert(maxHeap.delete());
 					maxHeap.insert(num);
 					double median = (minHeap.peek() + maxHeap.peek()) / 2;
 					System.out.println(String.format("%.1f", median));
-				}
-			} else {
-				if(num > maxHeap.peek()) {
-					maxHeap.insert(num);
-					double median = (minHeap.peek() + maxHeap.peek()) / 2;
-					System.out.println(String.format("%.1f", median));
+					
 				}else {
-					maxHeap.insert(minHeap.delete());
 					minHeap.insert(num);
 					double median = (minHeap.peek() + maxHeap.peek()) / 2;
 					System.out.println(String.format("%.1f", median));
 				}
-
+			} else {
+				if(num < minHeap.peek()) {
+					maxHeap.insert(minHeap.delete());
+					minHeap.insert(num);
+					double median = (minHeap.peek() + maxHeap.peek()) / 2;
+					System.out.println(String.format("%.1f", median));
+				}else {
+					maxHeap.insert(num);
+					double median = (minHeap.peek() + maxHeap.peek()) / 2;
+					System.out.println(String.format("%.1f", median));
+				}
 			}
         }
     }
