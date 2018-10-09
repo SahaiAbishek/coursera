@@ -1,7 +1,5 @@
 package hkr;
 
-import java.util.Scanner;
-
 public class MedianCorrectSolution {
 
     public static void main(String[] args) {

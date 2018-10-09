@@ -5,8 +5,6 @@
 
 package hkr;
 
-import java.util.Scanner;
-
 public class LonelyInt {
 
 	public static int lonelyInteger(int[] a) {

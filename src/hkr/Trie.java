@@ -61,6 +61,7 @@ public class Trie {
 		            	System.out.println(find(contact));
 		            }
 	        }
+	        in.close();
 	}
 
 }
