@@ -1,39 +1,40 @@
 package hkr;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class FrequencyQuery {
 	// Complete the freqQuery function below.
-	static List<Integer> freqQuery(List<List<Integer>> queries) {
-		Map<Integer, Integer> map = new HashMap<>();
+	static List<Integer> freqQuery(List<int[]> queries) {
+		int arr[] = new int[1000000];
+		int freqArr[] = new int[1000000];
 		List<Integer> returnList = new ArrayList<>();
-		for (List<Integer> query : queries) {
-			Integer operation = query.get(0);
-			Integer number = query.get(1);
+		for (int[] query : queries) {
+			Integer operation = query[0];
+			Integer number = query[1];
 			switch (operation) {
 			case 1:
-				if (map.containsKey(number)) {
-					int freq = map.get(number);
-					map.put(number, freq+1);
-				} else {
-					map.put(number, 1);
+				int freq = arr[number];
+				arr[number] = freq + 1;
+				if (freq > 0) {
+					freqArr[freq] -= 1;
 				}
+				freqArr[freq + 1] = freqArr[freq+1] + 1;
 				break;
 			case 2:
-				if (map.containsKey(number)) {
-					int freq = map.get(number);
-					if(freq <= 1){
-						map.remove(number);
-					}else{
-						map.put(number, freq-1);
+				int freq1 = arr[number];
+				if (freq1 > 0) {
+					int newFreq = freq1 - 1;
+					arr[number] = newFreq;
+					freqArr[freq1]-=1;
+					if(newFreq > 0 ){
+						freqArr[newFreq]+=1;
 					}
+					
 				}
 				break;
 			case 3:
-				if (map.containsValue(number)) {
+				if (freqArr[number] > 0) {
 					returnList.add(1);
 				} else {
 					returnList.add(0);

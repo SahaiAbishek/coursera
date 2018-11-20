@@ -9,7 +9,7 @@ public class MyTree {
 
 	private class Node {
 		private Node left, right;
-		private int value;
+		private int data;
 	}
 
 	private Node node;
@@ -21,12 +21,12 @@ public class MyTree {
 	public Node insert(Node node, int value) {
 		if (node == null) {
 			node = new Node();
-			node.value = value;
+			node.data = value;
 			return node;
 		}
-		if (value < node.value) {
+		if (value < node.data) {
 			node.left = insert(node.left, value);
-		} else if (value > node.value) {
+		} else if (value > node.data) {
 			node.right = insert(node.right, value);
 		}
 		return node;
@@ -41,7 +41,7 @@ public class MyTree {
 			return;
 		}
 		inorder(node.left);
-		lst.add(node.value);
+		lst.add(node.data);
 		inorder(node.right);
 	}
 
@@ -79,7 +79,7 @@ public class MyTree {
 			node = node.left;
 		}
 
-		return node.value;
+		return node.data;
 	}
 
 	// private Node min(Node node) throws Exception {
@@ -97,7 +97,7 @@ public class MyTree {
 			return 0;
 		}
 
-		return x.value;
+		return x.data;
 	}
 
 	private Node floor(Node node, int num) {
@@ -105,11 +105,11 @@ public class MyTree {
 			return null;
 		}
 
-		if (num == node.value) {
+		if (num == node.data) {
 			return node;
 		}
 
-		if (num < node.value) {
+		if (num < node.data) {
 			return floor(node.left, num);
 		}
 
@@ -120,6 +120,25 @@ public class MyTree {
 			return node;
 		}
 
+	}
+
+	public Node lca(Node root, int v1, int v2) {
+		if (root == null) {
+			return null;
+		}
+		if (root.data == v1 || root.data == v2) {
+			return root;
+		}
+		Node left = lca(root.left, v1, v2);
+		Node right = lca(root.right, v1, v2);
+		if (left != null && right != null) {
+			return node;
+		}
+		if (left != null) {
+			return left;
+		} else {
+			return right;
+		}
 	}
 
 	public static void main(String[] args) throws Exception {

@@ -29,6 +29,15 @@ public class MyTree {
 		}
 		return node;
 	}
+	
+	public int height(Tree root) {
+		if(root == null){
+			return 0;
+		}
+		int height= 0;
+		height+=Math.max(height(root.left),height(root.right));
+      	return height;
+    }
 
 	public boolean isBST(Tree root) {
 		return isBST(root, Integer.MAX_VALUE, Integer.MIN_VALUE);
@@ -45,6 +54,7 @@ public class MyTree {
 
 		return (isBST(root.left, root.data, min) && isBST(root.right, max, root.data));
 	}
+	
 
 	public static void main(String[] args) {
 		MyTree tree = new MyTree();
