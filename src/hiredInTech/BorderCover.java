@@ -11,7 +11,7 @@ public class BorderCover {
         // l = 100
         // radars = [ [5, 10], [3, 25], [46, 99], [39, 40], [45, 50] ]
         // The `radars` list will çonsist of lists with two elements
-        radars.sort((List<Integer> o1, List<Integer> o2) -> o1.get(0).compareTo(o2.get(0)));
+        radars.sort((o1,o2) -> o1.get(0).compareTo(o2.get(0)));
         int covered = 0;
         int start = radars.get(0).get(0);
         int end = radars.get(0).get(1);
